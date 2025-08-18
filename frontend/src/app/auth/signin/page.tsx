@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
 import { useSupabase } from '@/components/providers/SupabaseProvider';
+import toast from 'react-hot-toast';
 
 // --- Outer Page with Suspense Wrapper ---
 export default function SigninPage() {
@@ -48,6 +49,7 @@ function SigninPageInner() {
       if (data?.user) {
         // Delay to ensure session is set before redirect
         // await new Promise(resolve => setTimeout(resolve, 500));
+        toast.success('Signed in successfully');
         router.push('/dashboard');
       } else {
         setError('Failed to sign in. Please try again.');
