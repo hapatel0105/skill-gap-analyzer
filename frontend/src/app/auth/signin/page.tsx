@@ -1,13 +1,23 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
 import { useSupabase } from '@/components/providers/SupabaseProvider';
 
+// --- Outer Page with Suspense Wrapper ---
 export default function SigninPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <SigninPageInner />
+    </Suspense>
+  );
+}
+
+// --- Actual Sign-in Form ---
+function SigninPageInner() {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -28,7 +38,7 @@ export default function SigninPage() {
 
     try {
       const { data, error } = await signIn(formData.email, formData.password);
-      
+
       if (error) {
         setError(error.message);
         setLoading(false);
@@ -36,7 +46,7 @@ export default function SigninPage() {
       }
 
       if (data?.user) {
-        // Delay the redirect slightly to ensure the session is properly set
+        // Delay to ensure session is set before redirect
         await new Promise(resolve => setTimeout(resolve, 500));
         router.push('/dashboard');
       } else {
@@ -50,10 +60,10 @@ export default function SigninPage() {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
+    setFormData(prev => ({
+      ...prev,
       [e.target.name]: e.target.value,
-    });
+    }));
   };
 
   return (
@@ -79,7 +89,8 @@ export default function SigninPage() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
+                             focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                   placeholder="Enter your email"
                   disabled={loading}
                 />
@@ -96,26 +107,20 @@ export default function SigninPage() {
                   required
                   value={formData.password}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
+                             focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                   placeholder="Enter your password"
                   disabled={loading}
                 />
               </div>
 
               <div className="space-y-4">
-                <Button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full"
-                >
+                <Button type="submit" disabled={loading} className="w-full">
                   {loading ? 'Signing in...' : 'Sign In'}
                 </Button>
 
                 <div className="text-center">
-                  <Link
-                    href="/auth/signup"
-                    className="text-sm text-primary-600 hover:text-primary-500"
-                  >
+                  <Link href="/auth/signup" className="text-sm text-primary-600 hover:text-primary-500">
                     Don&apos;t have an account? Sign up
                   </Link>
                 </div>
