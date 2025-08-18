@@ -63,35 +63,34 @@ export default function DashboardPage() {
   };
 
   const fetchStats = async () => {
-    // try {
-    //   // Fetch resumes count
-    //   const resumesData = await api.get('/api/resume');
-    //   if (resumesData.success) {
-    //     setStats(prev => ({ ...prev, resumes: resumesData.data?.length || 0 }));
-    //   }
+    try {
+      // Fetch resumes count
+      const resumesData = await api.get('/api/resume');
+      if (resumesData.success) {
+        setStats(prev => ({ ...prev, resumes: resumesData.data?.length || 0 }));
+      }
 
-    //   // Fetch job descriptions count
-    //   const jobsData = await api.get('/api/job-description');
-    //   if (jobsData.success) {
-    //     setStats(prev => ({ ...prev, jobDescriptions: jobsData.data?.jobDescriptions?.length || 0 }));
-    //   }
+      // Fetch job descriptions count
+      const jobsData = await api.get('/api/job-description');
+      if (jobsData.success) {
+        setStats(prev => ({ ...prev, jobDescriptions: jobsData.data?.jobDescriptions?.length || 0 }));
+      }
 
-    //   // Fetch skill gaps count
-    //   const gapsData = await api.get('/api/skill-analysis');
-    //   if (gapsData.success) {
-    //     setStats(prev => ({ ...prev, skillsAnalyzed: gapsData.data?.length || 0 }));
-    //   }
+      // Fetch skill gaps count
+      const gapsData = await api.get('/api/skill-analysis');
+      if (gapsData.success) {
+        setStats(prev => ({ ...prev, skillsAnalyzed: gapsData.data?.length || 0 }));
+      }
 
-    //   // Fetch learning paths count
-    //   const pathsData = await api.get('/api/learning-path');
-    //   if (pathsData.success) {
-    //     setStats(prev => ({ ...prev, learningPaths: pathsData.data?.length || 0 }));
-    //   }
-    // } catch (error) {
-    //   logError(error, 'Fetch Stats');
-    //   console.error('Failed to fetch stats:', error);
-    // }
-    console.log('Stats fetched');
+      // Fetch learning paths count
+      const pathsData = await api.get('/api/learning-path');
+      if (pathsData.success) {
+        setStats(prev => ({ ...prev, learningPaths: pathsData.data?.length || 0 }));
+      }
+    } catch (error) {
+      logError(error, 'Fetch Stats');
+      console.error('Failed to fetch stats:', error);
+    }
   };
 
   const handleSignOut = async () => {
