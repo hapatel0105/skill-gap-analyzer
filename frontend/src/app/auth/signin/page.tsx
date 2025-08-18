@@ -8,10 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useSupabase } from '@/components/providers/SupabaseProvider';
 
 export default function SigninPage() {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
@@ -21,9 +18,7 @@ export default function SigninPage() {
 
   useEffect(() => {
     const messageParam = searchParams.get('message');
-    if (messageParam) {
-      setMessage(messageParam);
-    }
+    if (messageParam) setMessage(messageParam);
   }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
