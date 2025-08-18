@@ -47,7 +47,7 @@ function SigninPageInner() {
 
       if (data?.user) {
         // Delay to ensure session is set before redirect
-        await new Promise(resolve => setTimeout(resolve, 500));
+        // await new Promise(resolve => setTimeout(resolve, 500));
         router.push('/dashboard');
       } else {
         setError('Failed to sign in. Please try again.');
