@@ -11,7 +11,11 @@ export const metadata: Metadata = {
   description: 'Analyze your skills and create personalized learning paths for your dream job',
   keywords: 'skills, career, learning, job, analysis, AI, LLaMA',
   authors: [{ name: 'Skill Gap Analyzer Team' }],
-  viewport: 'width=device-width, initial-scale=1',
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

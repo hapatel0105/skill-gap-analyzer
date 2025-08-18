@@ -64,14 +64,16 @@ export function isAuthError(error: any): boolean {
 
 export function isServerError(error: any): boolean {
   if (error instanceof AxiosError) {
-    return error.response?.status >= 500;
+    const status = error.response?.status;
+    return typeof status === 'number' && status >= 500;
   }
   return false;
 }
 
 export function isClientError(error: any): boolean {
   if (error instanceof AxiosError) {
-    return error.response?.status >= 400 && error.response?.status < 500;
+    const status = error.response?.status;
+    return typeof status === 'number' && status >= 400 && status < 500;
   }
   return false;
 }
