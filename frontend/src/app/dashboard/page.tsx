@@ -38,6 +38,7 @@ export default function DashboardPage() {
 
   useEffect(() => {
     checkAuth();
+    toast.success('Welcome to the dashboard!');
     fetchStats();
   }, []);
 
