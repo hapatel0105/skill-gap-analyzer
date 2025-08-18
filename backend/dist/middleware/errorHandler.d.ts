@@ -10,4 +10,5 @@ export declare class CustomError extends Error implements AppError {
     constructor(message: string, statusCode: number);
 }
 export declare const asyncHandler: (fn: Function) => (req: Request, res: Response, next: NextFunction) => void;
+export declare const cleanupUploadedFile: (req: Request, res: Response, next: NextFunction) => void;
 //# sourceMappingURL=errorHandler.d.ts.map

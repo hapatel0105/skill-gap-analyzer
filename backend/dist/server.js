@@ -15,6 +15,7 @@ const resume_1 = __importDefault(require("./routes/resume"));
 const jobDescription_1 = __importDefault(require("./routes/jobDescription"));
 const skillAnalysis_1 = __importDefault(require("./routes/skillAnalysis"));
 const learningPath_1 = __importDefault(require("./routes/learningPath"));
+const learningResource_1 = __importDefault(require("./routes/learningResource"));
 // Import middleware
 const errorHandler_1 = require("./middleware/errorHandler");
 const auth_2 = require("./middleware/auth");
@@ -56,10 +57,11 @@ app.get('/health', (req, res) => {
 });
 // API routes
 app.use('/api/auth', auth_1.default);
-app.use('/api/resume', auth_2.authMiddleware, resume_1.default);
-app.use('/api/job-description', auth_2.authMiddleware, jobDescription_1.default);
-app.use('/api/skill-analysis', auth_2.authMiddleware, skillAnalysis_1.default);
-app.use('/api/learning-path', auth_2.authMiddleware, learningPath_1.default);
+app.use('/api/resume', auth_2.authenticate, resume_1.default);
+app.use('/api/job-description', auth_2.authenticate, jobDescription_1.default);
+app.use('/api/skill-analysis', auth_2.authenticate, skillAnalysis_1.default);
+app.use('/api/learning-path', auth_2.authenticate, learningPath_1.default);
+app.use('/api/learning-resources', auth_2.authenticate, learningResource_1.default);
 // 404 handler
 app.use('*', (req, res) => {
     res.status(404).json({
@@ -68,6 +70,7 @@ app.use('*', (req, res) => {
     });
 });
 // Error handling middleware
+app.use(errorHandler_1.cleanupUploadedFile);
 app.use(errorHandler_1.errorHandler);
 // Start server
 app.listen(PORT, () => {

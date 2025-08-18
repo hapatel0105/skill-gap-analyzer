@@ -98,6 +98,22 @@ router.post('/analyze', validateAnalysisRequest, (0, errorHandler_1.asyncHandler
         throw error;
     }
 }));
+// Get all skill analyses for the current user
+router.get('/', (0, errorHandler_1.asyncHandler)(async (req, res) => {
+    const userId = req.user.id;
+    const { data: analyses, error } = await supabase_1.supabase
+        .from('skill_gaps')
+        .select('*')
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false });
+    if (error) {
+        throw new errorHandler_2.CustomError('Failed to fetch skill analyses', 500);
+    }
+    res.json({
+        success: true,
+        data: analyses,
+    });
+}));
 // Get analysis history for user
 router.get('/history', (0, errorHandler_1.asyncHandler)(async (req, res) => {
     const userId = req.user.id;

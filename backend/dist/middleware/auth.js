@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.requireUserOrAdmin = exports.requireAdmin = exports.requireRole = exports.optionalAuthMiddleware = exports.authMiddleware = void 0;
+exports.requireUserOrAdmin = exports.requireAdmin = exports.requireRole = exports.authMiddleware = exports.authenticate = void 0;
 const supabase_1 = require("../config/supabase");
 const errorHandler_1 = require("./errorHandler");
-export const authMiddleware = async (req, res, next) => {
+const authenticate = async (req, res, next) => {
     try {
         const authHeader = req.headers.authorization;
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -32,9 +32,9 @@ export const authMiddleware = async (req, res, next) => {
         }
     }
 };
-
+exports.authenticate = authenticate;
 // Optional auth middleware for routes that can work with or without authentication
-const optionalAuthMiddleware = async (req, res, next) => {
+const authMiddleware = async (req, res, next) => {
     try {
         const authHeader = req.headers.authorization;
         if (authHeader && authHeader.startsWith('Bearer ')) {
@@ -55,7 +55,7 @@ const optionalAuthMiddleware = async (req, res, next) => {
         next();
     }
 };
-exports.optionalAuthMiddleware = optionalAuthMiddleware;
+exports.authMiddleware = authMiddleware;
 // Role-based access control middleware
 const requireRole = (allowedRoles) => {
     return (req, res, next) => {

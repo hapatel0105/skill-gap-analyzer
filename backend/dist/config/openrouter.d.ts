@@ -12,7 +12,7 @@ export declare const PROMPT_TEMPLATES: {
 };
 export declare const MODEL_PARAMS: {
     readonly temperature: 0.1;
-    readonly max_tokens: 2000;
+    readonly max_tokens: 1000;
     readonly top_p: 0.9;
     readonly frequency_penalty: 0.1;
     readonly presence_penalty: 0.1;

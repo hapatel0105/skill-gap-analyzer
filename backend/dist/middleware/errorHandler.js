@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.asyncHandler = exports.CustomError = exports.errorHandler = void 0;
+exports.cleanupUploadedFile = exports.asyncHandler = exports.CustomError = exports.errorHandler = void 0;
 const errorHandler = (err, req, res, next) => {
     let error = { ...err };
     error.message = err.message;
@@ -67,4 +67,16 @@ const asyncHandler = (fn) => (req, res, next) => {
     Promise.resolve(fn(req, res, next)).catch(next);
 };
 exports.asyncHandler = asyncHandler;
+const cleanupUploadedFile = (req, res, next) => {
+    res.on('finish', () => {
+        if (req.file && res.statusCode >= 400) {
+            const fs = require('fs');
+            if (fs.existsSync(req.file.path)) {
+                fs.unlinkSync(req.file.path);
+            }
+        }
+    });
+    next();
+};
+exports.cleanupUploadedFile = cleanupUploadedFile;
 //# sourceMappingURL=errorHandler.js.map

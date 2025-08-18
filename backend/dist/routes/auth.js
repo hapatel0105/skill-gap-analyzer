@@ -7,8 +7,8 @@ const express_1 = __importDefault(require("express"));
 const express_validator_1 = require("express-validator");
 const supabase_1 = require("../config/supabase");
 const errorHandler_1 = require("../middleware/errorHandler");
-const auth_1 = require("../middleware/auth");
 const errorHandler_2 = require("../middleware/errorHandler");
+const auth_1 = require("../middleware/auth");
 const router = express_1.default.Router();
 // Validation middleware
 const validateSignup = [
@@ -122,18 +122,10 @@ router.post('/signout', auth_1.authMiddleware, (0, errorHandler_1.asyncHandler)(
     });
 }));
 // Get current user
-router.get('/me', auth_1.authMiddleware, (0, errorHandler_1.asyncHandler)(async (req, res) => {
-    const { data: user, error } = await supabase_1.supabase
-        .from('users')
-        .select('*')
-        .eq('id', req.user.id)
-        .single();
-    if (error) {
-        throw new errorHandler_2.CustomError('User not found', 404);
-    }
+router.get('/me', (0, errorHandler_1.asyncHandler)(async (req, res) => {
     res.json({
         success: true,
-        data: { user },
+        data: { message: "Authentication removed" }
     });
 }));
 // Update profile

@@ -234,6 +234,20 @@ router.get('/:id/compare/:resumeId', (0, errorHandler_1.asyncHandler)(async (req
         },
     });
 }));
+router.post('/analyze', (0, errorHandler_1.asyncHandler)(async (req, res) => {
+    const { jobDescriptionId, description } = req.body;
+    if (!jobDescriptionId || !description) {
+        throw new errorHandler_2.CustomError('jobDescriptionId and description are required', 400);
+    }
+    const skills = await extractSkillsFromJobDescription(description);
+    res.json({
+        success: true,
+        data: {
+            requiredSkills: skills.required,
+            preferredSkills: skills.preferred,
+        },
+    });
+}));
 // Helper function to extract skills from job description using LLaMA model
 async function extractSkillsFromJobDescription(description) {
     try {
