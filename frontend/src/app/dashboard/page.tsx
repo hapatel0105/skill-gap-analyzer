@@ -45,11 +45,13 @@ export default function DashboardPage() {
   const checkAuth = async () => {
     try {
       const userData = await api.get('/api/auth/me');
+      console.log("🚀 ~ checkAuth ~ userData:", userData)
       if (userData.success) {
         setUser(userData.data.user);
       } else {
         // Not authenticated, redirect to signin
         toast.error('Please sign in to continue');
+
         router.push('/auth/signin');
         return;
       }
@@ -97,11 +99,12 @@ export default function DashboardPage() {
   const handleSignOut = async () => {
     try {
       await api.post('/api/auth/signout', {});
+      toast.success('Signed out successfully!');
       router.push('/auth/signin');
     } catch (error) {
       logError(error, 'Sign Out');
       console.error('Sign out failed:', error);
-      // Still redirect even if signout fails
+      toast.error('Sign out failed!');
       router.push('/auth/signin');
     }
   };
