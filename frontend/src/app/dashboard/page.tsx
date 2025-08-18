@@ -48,6 +48,7 @@ export default function DashboardPage() {
         setUser(userData.data.user);
       } else {
         // Not authenticated, redirect to signin
+        toast.error('Please sign in to continue');
         router.push('/auth/signin');
         return;
       }
