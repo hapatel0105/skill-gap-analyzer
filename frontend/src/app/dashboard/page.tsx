@@ -37,30 +37,30 @@ export default function DashboardPage() {
   const router = useRouter();
 
   useEffect(() => {
-    checkAuth();
+    // checkAuth();
     fetchStats();
   }, []);
 
-  const checkAuth = async () => {
-    try {
-      const userData = await api.get('/api/auth/me');
-      if (userData.success) {
-        setUser(userData.data.user);
-      } else {
-        // Not authenticated, redirect to signin
-        toast.error('Please sign in to continue');
-        router.push('/auth/signin');
-        return;
-      }
-    } catch (error) {
-      logError(error, 'Auth Check');
-      console.error('Auth check failed:', error);
-      router.push('/auth/signin');
-      return;
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const checkAuth = async () => {
+  //   try {
+  //     const userData = await api.get('/api/auth/me');
+  //     if (userData.success) {
+  //       setUser(userData.data.user);
+  //     } else {
+  //       // Not authenticated, redirect to signin
+  //       toast.error('Please sign in to continue');
+  //       router.push('/auth/signin');
+  //       return;
+  //     }
+  //   } catch (error) {
+  //     logError(error, 'Auth Check');
+  //     console.error('Auth check failed:', error);
+  //     router.push('/auth/signin');
+  //     return;
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const fetchStats = async () => {
     try {
