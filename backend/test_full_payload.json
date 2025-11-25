@@ -1,0 +1,87 @@
+{
+    "skillGaps": [
+        {
+            "skill": {
+                "id": "Node.js",
+                "name": "Node.js",
+                "category": "Other"
+            },
+            "currentLevel": "none",
+            "requiredLevel": "advanced",
+            "gap": "large",
+            "priority": "high"
+        },
+        {
+            "skill": {
+                "id": "TypeScript",
+                "name": "TypeScript",
+                "category": "Other"
+            },
+            "currentLevel": "none",
+            "requiredLevel": "advanced",
+            "gap": "large",
+            "priority": "high"
+        },
+        {
+            "skill": {
+                "id": "PostgreSQL",
+                "name": "PostgreSQL",
+                "category": "Other"
+            },
+            "currentLevel": "none",
+            "requiredLevel": "advanced",
+            "gap": "large",
+            "priority": "high"
+        },
+        {
+            "skill": {
+                "id": "AWS",
+                "name": "AWS",
+                "category": "Other"
+            },
+            "currentLevel": "advanced",
+            "requiredLevel": "advanced",
+            "gap": "none",
+            "priority": "low"
+        },
+        {
+            "skill": {
+                "id": "Docker",
+                "name": "Docker",
+                "category": "Other"
+            },
+            "currentLevel": "none",
+            "requiredLevel": "intermediate",
+            "gap": "medium",
+            "priority": "medium"
+        },
+        {
+            "skill": {
+                "id": "Kubernetes",
+                "name": "Kubernetes",
+                "category": "Other"
+            },
+            "currentLevel": "none",
+            "requiredLevel": "intermediate",
+            "gap": "medium",
+            "priority": "medium"
+        },
+        {
+            "skill": {
+                "id": "CI/CD pipelines",
+                "name": "CI/CD pipelines",
+                "category": "Other"
+            },
+            "currentLevel": "none",
+            "requiredLevel": "intermediate",
+            "gap": "medium",
+            "priority": "medium"
+        }
+    ],
+    "preferences": {
+        "timeCommitment": 10,
+        "learningStyle": "mixed",
+        "budgetPreference": "free",
+        "difficultyPreference": "gradual"
+    }
+}

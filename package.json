@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@google/genai": "^1.16.0",
+    "mime": "^4.0.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0"
+  }
+}

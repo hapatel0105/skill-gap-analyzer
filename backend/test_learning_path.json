@@ -1,0 +1,43 @@
+{
+    "skillGaps": [
+        {
+            "skill": {
+                "id": "Node.js",
+                "name": "Node.js",
+                "category": "Other"
+            },
+            "currentLevel": "none",
+            "requiredLevel": "advanced",
+            "gap": "large",
+            "priority": "high"
+        },
+        {
+            "skill": {
+                "id": "TypeScript",
+                "name": "TypeScript",
+                "category": "Other"
+            },
+            "currentLevel": "none",
+            "requiredLevel": "advanced",
+            "gap": "large",
+            "priority": "high"
+        },
+        {
+            "skill": {
+                "id": "PostgreSQL",
+                "name": "PostgreSQL",
+                "category": "Other"
+            },
+            "currentLevel": "none",
+            "requiredLevel": "advanced",
+            "gap": "large",
+            "priority": "high"
+        }
+    ],
+    "preferences": {
+        "timeCommitment": 10,
+        "learningStyle": "mixed",
+        "budgetPreference": "free",
+        "difficultyPreference": "gradual"
+    }
+}

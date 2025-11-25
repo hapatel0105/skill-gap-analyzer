@@ -326,7 +326,15 @@ export function LearningPath({ skillGaps, onClose }: LearningPathProps) {
               <Button onClick={() => setLearningPath(null)} variant="outline">
                 Generate New Path
               </Button>
-              <Button className="bg-success-600 hover:bg-success-700">
+              <Button 
+                className="bg-success-600 hover:bg-success-700"
+                onClick={() => {
+                  toast.success('Learning path saved! You can track your progress in the dashboard.');
+                  if (onClose) {
+                    onClose();
+                  }
+                }}
+              >
                 <TrendingUp className="h-4 w-4 mr-2" />
                 Start Learning
               </Button>
