@@ -587,7 +587,28 @@ export function SkillGapAnalysis({ onAnalysisComplete, onClose }: SkillGapAnalys
               <Button onClick={resetAll} variant="outline">
                 New Analysis
               </Button>
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+               <Button 
+                className="bg-blue-600 hover:bg-blue-700 text-white"
+                onClick={async () => {
+                  try {
+                    const progressData = {
+                      completedResources: [],
+                      currentResourceIndex: 0,
+                      timeSpentMinutes: 0,
+                      currentSkillIndex: 0,
+                      completedSkills: [],
+                      notes: '',
+                      difficultyRating: null,
+                    };
+                    await api.post(`/api/learning-path/progress/${learningPathResult.learningPath.id}`, progressData);
+                    toast.success('Learning path saved! You can now track your progress.');
+                    if (onClose) onClose();
+                  } catch (error) {
+                    logError(error, 'Save Learning Path');
+                    toast.error('Failed to save learning path. Please try again.');
+                  }
+                }}
+              >
                 Save Learning Path
               </Button>
             </div>

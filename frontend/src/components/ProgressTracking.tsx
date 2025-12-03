@@ -15,6 +15,7 @@ interface ProgressTrackingProps {
 
 export function ProgressTracking({ onClose }: ProgressTrackingProps) {
   const [progressData, setProgressData] = useState<any>(null);
+  console.log( "dhaksjdhkasjdhkjashdkjsh" , progressData);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -81,25 +82,25 @@ export function ProgressTracking({ onClose }: ProgressTrackingProps) {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
             <div>
               <div className="text-2xl font-bold text-primary-600">
-                {progressData?.totalSkills || 0}
+                {progressData?.progress?.[0]?.total_resources || 0}
               </div>
               <div className="text-sm text-gray-600">Total Skills</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-success-600">
-                {progressData?.completedSkills || 0}
+              <div className="text-2xl font-bold text-warning-600">
+                {progressData?.progress?.[0]?.time_spent_minutes || 0} Mins
               </div>
-              <div className="text-sm text-gray-600">Completed</div>
+              <div className="text-sm text-gray-600">Time Spent</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-warning-600">
-                {progressData?.inProgressSkills || 0}
+              <div className="text-2xl font-bold text-success-600">
+                {progressData?.progress?.[0]?.estimated_time_remaining_minutes || 0} Mins
               </div>
-              <div className="text-sm text-gray-600">In Progress</div>
+              <div className="text-sm text-gray-600">Time Remaining</div>
             </div>
             <div>
               <div className="text-2xl font-bold text-secondary-600">
-                {progressData?.overallProgress || 0}%
+                {progressData?.progress?.[0]?.progress_percentage || 0}%
               </div>
               <div className="text-sm text-gray-600">Overall Progress</div>
             </div>

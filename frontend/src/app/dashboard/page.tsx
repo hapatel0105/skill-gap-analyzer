@@ -37,33 +37,33 @@ export default function DashboardPage() {
   const router = useRouter();
 
   useEffect(() => {
-    // checkAuth();
+    checkAuth();
     toast.success('Welcome to the dashboard!');
     fetchStats();
   }, []);
 
-  // const checkAuth = async () => {
-  //   try {
-  //     const userData = await api.get('/api/auth/me');
-  //     console.log("🚀 ~ checkAuth ~ userData:", userData)
-  //     if (userData.success) {
-  //       setUser(userData.data.user);
-  //     } else {
-  //       // Not authenticated, redirect to signin
-  //       toast.error('Please sign in to continue');
+  const checkAuth = async () => {
+    try {
+      const userData = await api.get('/api/auth/me');
+      console.log("🚀 ~ checkAuth ~ userData:", userData)
+      if (userData.success) {
+        setUser(userData.data.user);
+      } else {
+        // Not authenticated, redirect to signin
+        toast.error('Please sign in to continue');
 
-  //       router.push('/auth/signin');
-  //       return;
-  //     }
-  //   } catch (error) {
-  //     logError(error, 'Auth Check');
-  //     console.error('Auth check failed:', error);
-  //     router.push('/auth/signin');
-  //     return;
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+        router.push('/auth/signin');
+        return;
+      }
+    } catch (error) {
+      logError(error, 'Auth Check');
+      console.error('Auth check failed:', error);
+      router.push('/auth/signin');
+      return;
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const fetchStats = async () => {
     try {
@@ -90,7 +90,7 @@ export default function DashboardPage() {
       if (pathsData.success) {
         setStats(prev => ({ ...prev, learningPaths: pathsData.data?.length || 0 }));
       }
-      toast.success('Stats fetched successfully!');
+      // toast.success('Stats fetched successfully!');
       setLoading(false);
     } catch (error) {
       logError(error, 'Fetch Stats');
